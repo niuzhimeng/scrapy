@@ -31,3 +31,32 @@ class MySQLStoreCnblogsPipeline(object):
         print('关闭0000000000000')
         self.con.commit()
         self.con.close()
+
+
+class MySQLAuthorPipeline(object):
+    def __init__(self):
+        print('初始化22222222222')
+        self.con = pymysql.connect(host=settings.MYSQL_HOST,
+                                   user=settings.MYSQL_USER,
+                                   passwd=settings.MYSQL_PASSWD,
+                                   db=settings.MYSQL_DBNAME,
+                                   charset=settings.MYSQL_CHARSET,
+                                   port=settings.MYSQL_PORT)
+        self.cursor = self.con.cursor()
+
+    def process_item(self, item, spider):
+
+        sql = 'insert into author(id,name,birthday,birthplace,bio) values (%s,%s,%s,%s,%s)'
+        try:
+            self.cursor.execute(sql,
+                                (int(uuid.uuid1()), item['name'], item['birthday'], item['birthplace'], item['bio']))
+            print("insert success")  # 测试语句
+        except Exception as e:
+            print('Insert error:', e)
+            self.con.rollback()
+        return item
+
+    def close_spider(self, spider):
+        print('关闭0000000000000')
+        self.con.commit()
+        self.con.close()

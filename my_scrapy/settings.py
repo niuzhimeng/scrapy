@@ -26,7 +26,8 @@ MYSQL_CHARSET = 'utf8'
 MYSQL_PORT = 3306
 
 ITEM_PIPELINES = {
-    #'my_scrapy.pipelines.MySQLStoreCnblogsPipeline': 100,  # 保存到mysql数据库
+    # 'my_scrapy.pipelines.MySQLStoreCnblogsPipeline': 100,  # 保存到mysql数据库
+    'my_scrapy.pipelines.MySQLAuthorPipeline': 100,  # 保存到mysql数据库
 }
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -42,7 +43,7 @@ ROBOTSTXT_OBEY = True
 # CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-# COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False

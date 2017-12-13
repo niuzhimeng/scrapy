@@ -1,3 +1,3 @@
 from scrapy import cmdline
 
-cmdline.execute('scrapy crawl jianshu -o nzm.json'.split())
+cmdline.execute('scrapy crawl author'.split())

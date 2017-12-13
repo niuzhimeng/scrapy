@@ -9,8 +9,10 @@ class TestSpider(scrapy.Spider):
 
     def parse(self, response):
         # follow links to author pages
-        for href in response.xpath("//div[@class='quote']//a[1]/@href").extract():
-            yield scrapy.Request(response.urljoin(href), callback=self.parse_author)
+        for h in response.xpath("//div[@class='quote']"):
+            hr = h.xpath(".//a/@href").extract_first().strip()
+            href = response.urljoin(hr)
+            yield scrapy.Request(response.urljoin(href), callback=self.parse_author)  # ,dont_filter=True(是否去重，默认false)
 
         # follow pagination links
         next_page = response.xpath("//li[@class='next']/a/@href").extract_first()
