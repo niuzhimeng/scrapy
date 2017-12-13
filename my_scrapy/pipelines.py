@@ -8,7 +8,7 @@ from my_scrapy import settings
 class MySQLStoreCnblogsPipeline(object):
     def __init__(self):
         print('初始化22222222222')
-        self.con = pymysql.connect(host=self.host,
+        self.con = pymysql.connect(host=settings.MYSQL_HOST,
                                    user=settings.MYSQL_USER,
                                    passwd=settings.MYSQL_PASSWD,
                                    db=settings.MYSQL_DBNAME,
