@@ -26,7 +26,7 @@ MYSQL_CHARSET = 'utf8'
 MYSQL_PORT = 3306
 
 ITEM_PIPELINES = {
-    'my_scrapy.pipelines.MySQLStoreCnblogsPipeline': 100,  # 保存到mysql数据库
+    #'my_scrapy.pipelines.MySQLStoreCnblogsPipeline': 100,  # 保存到mysql数据库
 }
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
